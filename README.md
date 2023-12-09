@@ -32,3 +32,11 @@ useradd --no-create-home --shell /bin/false prometheus
 mkdir -p /opt/prometheus/etc /opt/prometheus/data
 chown -R prometheus:prometheus  /opt/prometheus
 ```
+#### Starting Prometius container
+```
+docker run -d -p 9090:9090 --name=prometheus --user "$(id -u prometheus)":"$(id -g prometheus)" -v /opt/prometheus/etc/prometheus.yml:/etc/prometheus/prometheus.yml -v /opt/prometheus/data:/prometheus prom/prometheus
+```
+#### Stoping Prometius container
+```
+docker stop prometheus; docker rm prometheus
+```
