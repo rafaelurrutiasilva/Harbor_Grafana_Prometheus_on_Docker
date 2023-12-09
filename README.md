@@ -33,6 +33,7 @@ mkdir -p /opt/prometheus/etc /opt/prometheus/data
 chown -R nobody:nobody /opt/prometheus
 chmod -R 755 /opt/prometheus
 ```
+Copy now the [prometheus.yml](Harbor_Grafana_Prometheus_on_Docker/etc/prometheus.yml) to `/opt/prometheus/etc`
 
 #### Starting Prometius Container
 ```
