@@ -14,3 +14,12 @@ This repository contains instructions to help you run Harbor, Grafana, and Prome
 * * API version: 1.43 (minimum version 1.12)
 * * Go version: go1.20.10
 
+## Installation
+### Bas OS configuration
+```
+tdnf update -y 
+tdnf install tar -y 
+tdnf install docker-compose –y 
+systemctl start docker 
+systemctl enable docker
+```
