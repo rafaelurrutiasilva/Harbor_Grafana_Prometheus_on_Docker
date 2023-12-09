@@ -15,7 +15,7 @@ This repository contains instructions to help you run Harbor, Grafana, and Prome
 * * Go version: go1.20.10
 
 ## Installation
-### Photon OS configuration
+### Photon OS Configuration
 ```
 hostnamectl hostname chost    # Setting the hostname to chost
 tdnf update -y 
@@ -26,6 +26,7 @@ systemctl enable docker
 ```
 
 ### Prometheus on Docker
+Installation guide from [prometheus.io](https://prometheus.io/docs/prometheus/latest/installation/)
 #### Basic configuration
 ```
 groupadd prometheus
@@ -43,6 +44,7 @@ docker stop prometheus; docker rm prometheus
 ```
 
 ### Grafana on Docker
+Installation guide from [grafana.com](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker)
 #### Basic configuration
 ```
 groupadd grafana
