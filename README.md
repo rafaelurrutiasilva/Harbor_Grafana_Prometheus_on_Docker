@@ -52,7 +52,7 @@ useradd --no-create-home --shell /bin/false grafana
 mkdir -p /opt/grafana/data
 chown -R grafana:grafana  /opt/grafana
 ```
-#### Startin Grafana Container
+#### Starting Grafana Container
 ```
 docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana  grafana/grafana-oss
 ```
