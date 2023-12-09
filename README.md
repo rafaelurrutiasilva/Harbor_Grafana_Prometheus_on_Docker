@@ -96,11 +96,23 @@ mkdir -p /opt/harbor
 #### Configure the installer
 ```
 cd harbor
+rm ../harbor-online-installer*
 mv harbor.yml.tmpl harbor.yml
-
 ```
-Edit in `harbor.yml` values below and for this labb comment out all the https configuration.
+
+Edit in `harbor.yml` values below and for this labb **comment out all the https configuration**.
 ```
 data_volume: /opt/harbor
 hostname: "$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
+```
+
+#### Run the installer
+```
+./install.sh
+```
+
+#### Starting and Stoping the Harbor Container
+```
+docker-compose up -d
+docker-compose down
 ```
