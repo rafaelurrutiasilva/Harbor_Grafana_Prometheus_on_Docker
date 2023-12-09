@@ -56,6 +56,11 @@ chown -R grafana:grafana  /opt/grafana
 ```
 docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana  grafana/grafana-oss
 ```
+#### Test and surf to the address below
+Change the admin:admin passwd
+```
+echo http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:3000,g')
+```
 #### Stoping Grafana Container
 ```
 docker stop grafana; docker rm grafana
