@@ -31,6 +31,7 @@ Installation guide from [prometheus.io](https://prometheus.io/docs/prometheus/la
 ```
 groupadd prometheus
 useradd --no-create-home --shell /bin/false prometheus
+usermod -g prometheus prometheus
 mkdir -p /opt/prometheus/etc /opt/prometheus/data
 chown -R prometheus:prometheus  /opt/prometheus
 ```
@@ -49,6 +50,7 @@ Installation guide from [grafana.com](https://grafana.com/docs/grafana/latest/se
 ```
 groupadd grafana
 useradd --no-create-home --shell /bin/false grafana
+usermod -g grafana grafana
 mkdir -p /opt/grafana/data
 chown -R grafana:grafana  /opt/grafana
 ```
