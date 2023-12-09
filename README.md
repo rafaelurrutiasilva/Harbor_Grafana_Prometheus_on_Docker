@@ -27,32 +27,36 @@ systemctl enable docker
 
 ### Prometheus on Docker
 Installation guide from [prometheus.io](https://prometheus.io/docs/prometheus/latest/installation/)
-#### Basic configuration
+#### Basic Configuration
 ```
 groupadd prometheus
 useradd --no-create-home --shell /bin/false prometheus
 mkdir -p /opt/prometheus/etc /opt/prometheus/data
 chown -R prometheus:prometheus  /opt/prometheus
 ```
-#### Starting Prometius container
+#### Starting Prometius Container
 ```
 docker run -d -p 9090:9090 --name=prometheus --user "$(id -u prometheus)":"$(id -g prometheus)" -v /opt/prometheus/etc/prometheus.yml:/etc/prometheus/prometheus.yml -v /opt/prometheus/data:/prometheus prom/prometheus
 ```
-#### Stoping Prometius container
+#### Stoping Prometius Container
 ```
 docker stop prometheus; docker rm prometheus
 ```
 
 ### Grafana on Docker
 Installation guide from [grafana.com](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker)
-#### Basic configuration
+#### Basic Configuration
 ```
 groupadd grafana
 useradd --no-create-home --shell /bin/false grafana
 mkdir -p /opt/grafana/data
 chown -R grafana:grafana  /opt/grafana
 ```
-#### Startin Grafana container
+#### Startin Grafana Container
 ```
 docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana  grafana/grafana-oss
+```
+#### Stoping Grafana Container
+```
+docker stop grafana; docker rm grafana
 ```
