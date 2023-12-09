@@ -111,8 +111,19 @@ hostname: "$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
 ./install.sh
 ```
 
-#### Starting and Stoping the Harbor Container
+#### Starting and Test the Harbor Container
+Start:
 ```
 docker-compose up -d
+```
+
+Surf to:
+```
+echo "http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
+```
+And chage therw harbor_admin_password: Harbor12345 to VMwareVM1! for example.
+
+#### Stoping the Harbor Container
+```
 docker-compose down
 ```
