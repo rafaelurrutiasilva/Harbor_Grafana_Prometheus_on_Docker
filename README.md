@@ -28,12 +28,16 @@ systemctl enable docker
 ### Prometheus on Docker
 Installation guide from [prometheus.io](https://prometheus.io/docs/prometheus/latest/installation/)
 #### Basic Configuration
+Create config and data directories.
 ```
 mkdir -p /opt/prometheus/etc /opt/prometheus/data
+```
+Copy now the [prometheus.yml](/etc/prometheus.yml) to `/opt/prometheus/etc`
+Continue then with the rest here.
+```
 chown -R nobody:nobody /opt/prometheus
 chmod -R 755 /opt/prometheus
 ```
-Copy now the [prometheus.yml](Harbor_Grafana_Prometheus_on_Docker/etc/prometheus.yml) to `/opt/prometheus/etc`
 
 #### Starting Prometius Container
 ```
