@@ -29,12 +29,11 @@ systemctl enable docker
 Installation guide from [prometheus.io](https://prometheus.io/docs/prometheus/latest/installation/)
 #### Basic Configuration
 ```
-groupadd prometheus
-useradd --no-create-home --shell /bin/false prometheus
-usermod -g prometheus prometheus
 mkdir -p /opt/prometheus/etc /opt/prometheus/data
-chown -R prometheus:prometheus  /opt/prometheus
+chown -R nobody:nobody /opt/prometheus
+chmod -R 755 /opt/prometheus
 ```
+
 #### Starting Prometius Container
 ```
 docker run -d -p 9090:9090 --name=prometheus --user "$(id -u prometheus)":"$(id -g prometheus)" -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus  prom/prometheus
