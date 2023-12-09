@@ -37,7 +37,7 @@ chown -R prometheus:prometheus  /opt/prometheus
 ```
 #### Starting Prometius Container
 ```
-docker run -d -p 9090:9090 --name=prometheus --user "$(id -u prometheus)":"$(id -g prometheus)" -v /opt/prometheus/etc/prometheus.yml:/etc/prometheus/prometheus.yml -v /opt/prometheus/data:/prometheus prom/prometheus
+docker run -d -p 9090:9090 --name=prometheus --user "$(id -u prometheus)":"$(id -g prometheus)" -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus  prom/prometheus
 ```
 #### Stoping Prometius Container
 ```
