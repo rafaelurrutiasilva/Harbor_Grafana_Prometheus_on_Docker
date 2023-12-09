@@ -40,10 +40,12 @@ chmod -R 755 /opt/prometheus
 ```
 
 #### Starting Prometius Container
+Run the command below to start the container.
 ```
-docker run -d -p 9090:9090 --name=prometheus --user "$(id -u prometheus)":"$(id -g prometheus)" -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus  prom/prometheus
+docker run -d -p 9090:9090 --name=prometheus  -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus prom/prometheus
 ```
 #### Stoping Prometius Container
+Run the command below to stop and remove the container.
 ```
 docker stop prometheus; docker rm prometheus
 ```
