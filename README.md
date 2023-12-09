@@ -25,6 +25,8 @@ systemctl start docker
 systemctl enable docker
 ```
 
+---
+
 ### Prometheus on Docker
 Installation guide from [prometheus.io](https://prometheus.io/docs/prometheus/latest/installation/)
 #### Basic Configuration
@@ -44,11 +46,19 @@ Run the command below to start the container.
 ```
 docker run -d -p 9090:9090 --name=prometheus  -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus prom/prometheus
 ```
+
+#### Test and surf to the address below
+```
+echo http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:9090,g')
+```
+
 #### Stoping Prometius Container
 Run the command below to stop and remove the container.
 ```
 docker stop prometheus; docker rm prometheus
 ```
+
+---
 
 ### Grafana on Docker
 Installation guide from [grafana.com](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker)
@@ -73,3 +83,5 @@ echo http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:300
 ```
 docker stop grafana; docker rm grafana
 ```
+
+---
