@@ -26,6 +26,7 @@ systemctl enable docker
 ```
 
 ### Prometheus on Docker
+#### Basic configuration
 ```
 groupadd prometheus
 useradd --no-create-home --shell /bin/false prometheus
@@ -39,4 +40,17 @@ docker run -d -p 9090:9090 --name=prometheus --user "$(id -u prometheus)":"$(id 
 #### Stoping Prometius container
 ```
 docker stop prometheus; docker rm prometheus
+```
+
+### Grafana on Docker
+#### Basic configuration
+```
+groupadd grafana
+useradd --no-create-home --shell /bin/false grafana
+mkdir -p /opt/grafana/data
+chown -R grafana:grafana  /opt/grafana
+```
+#### Startin Grafana container
+```
+docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana  grafana/grafana-oss
 ```
