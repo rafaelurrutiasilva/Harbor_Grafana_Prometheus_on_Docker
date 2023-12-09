@@ -20,7 +20,7 @@ This repository contains instructions to help you run Harbor, Grafana, and Prome
 hostnamectl hostname chost    # Setting the hostname to chost
 tdnf update -y 
 tdnf install tar -y 
-tdnf install docker-compose –y 
+tdnf install docker-compose  
 systemctl start docker 
 systemctl enable docker
 ```
