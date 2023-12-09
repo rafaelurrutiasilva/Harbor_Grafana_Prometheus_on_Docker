@@ -90,13 +90,14 @@ docker stop grafana; docker rm grafana
 ```
 curl -L https://github.com/goharbor/harbor/releases/download/v2.7.4/harbor-online-installer-v2.7.4.tgz -o harbor-online-installer-v2.7.4.tgz
 tar xzvf harbor-online-installer-v2.7.4.tgz
+mkdir -p /opt/harbor
 ```
 
 #### Configure the installer
 ```
 cd harbor
 mv harbor.yml.tmpl harbor.yml
-mkdir -p /opt/harbor
+
 ```
 Edit in `harbor.yml` values below and for this labb comment out all the https configuration.
 ```
