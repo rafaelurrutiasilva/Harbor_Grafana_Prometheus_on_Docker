@@ -10,8 +10,11 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 ## TABLE OF CONTENTS
 1. [Environment](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#environment)
 2. [Referenses](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#referenses)
-3. 
-4. 
+3. [Making your Photon OS VM a Container Host](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#making-your-photon-os-vm-a-container-host)
+4. [Prometheus on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#prometheus-on-docker)
+5. [Prometheus Node Exporter on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#prometheus-node-exporter-on-docker)
+6. [Grafana on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#grafana-on-docker)
+7. [Harbor on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#harbor-on-docker)
 
 
 ---
@@ -19,14 +22,9 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 * OVA file from the [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS).
 * VMware Photon OS v5.0
 * Docker Client Engine - Community
-* * Version: 24.0.5
-* * API version: 1.43
-* * Go version: go1.20.10
-
+* * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
 * Docker Server Engine - Community
-* * Version: 24.0.5
-* * API version: 1.43 (minimum version 1.12)
-* * Go version: go1.20.10
+* * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
 
 ## Referenses
 * [Grafana on Docker](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker)
