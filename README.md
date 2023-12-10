@@ -28,6 +28,7 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 
 ## Installation
 ### Making your Photon OS VM a Container Host
+Photon OS provides a secure run-time environment for efficiently running containers. More information at [Frequently Asked Questions](https://github.com/vmware/photon/wiki/Frequently-Asked-Questions#photon-os-frequently-asked-questions)
 ```
 hostnamectl hostname chost    # Setting the hostname to chost
 tdnf update -y 
