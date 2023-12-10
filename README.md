@@ -6,6 +6,15 @@ VMware [Photon OS](https://vmware.github.io/photon/#features) delivers just enou
 Here, you will learn how to pull and run container images for Prometheus, Node Exporter, Grafana, and Harbor. Subsequently, you should be able to monitor machine and application metrics, including Harbor, using all the running containers.
 <br>
 
+---
+## TABLE OF CONTENTS
+1. [Environment](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#environment)
+2. [Referenses](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#referenses)
+3. 
+4. 
+
+
+---
 ## Environment
 * OVA file from the [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS).
 * VMware Photon OS v5.0
