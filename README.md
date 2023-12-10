@@ -147,6 +147,7 @@ data_volume: /opt/harbor
 hostname: "$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
 ```
 ### Run the installer
+Everytime the `install.sh` is run, all the values in the file **harbor.yml** will be used!
 ```
 ./install.sh
 ```
