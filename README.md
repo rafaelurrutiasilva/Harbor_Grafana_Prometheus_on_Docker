@@ -2,6 +2,9 @@
 ## Introduction
 This repository contains instructions to help you run Harbor, Grafana, and Prometheus and Node exporter on the same Photon OS Docker Host. <br>
 VMware [Photon OS](https://vmware.github.io/photon/#features) delivers just enough of a Linux operating system to efficiently run containers.<br> 
+<br>
+Here, you will learn how to pull and run container images for Prometheus, Node Exporter, Grafana, and Harbor. Subsequently, you should be able to monitor machine and application metrics, including Harbor, using all the running containers.
+<br>
 
 ## Environment
 * OVA file from the [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS).
