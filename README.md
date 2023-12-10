@@ -69,7 +69,8 @@ Run the command below to stop and remove the container.
 docker stop prometheus; docker rm prometheus
 ```
 ---
-### Prometheus Node exporter on Docker
+### Prometheus Node Exporter on Docker
+
 #### Testing the metrics are exported
 ```
 echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
