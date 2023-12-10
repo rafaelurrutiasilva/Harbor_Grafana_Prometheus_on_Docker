@@ -70,7 +70,11 @@ docker stop prometheus; docker rm prometheus
 ```
 ---
 ### Prometheus Node exporter on Docker
-
+#### Testing the metrics are exported
+```
+echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
+curl -L "http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:9100,g')/metrics"
+```
 ---
 ### Grafana on Docker
 #### Basic Configuration
