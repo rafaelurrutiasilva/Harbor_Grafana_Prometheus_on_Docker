@@ -38,7 +38,6 @@ systemctl enable docker
 ```
 
 ---
-
 ### Prometheus on Docker
 #### Basic Configuration
 Create config and data directories.
@@ -51,31 +50,41 @@ Continue then with the rest here.
 chown -R nobody:nobody /opt/prometheus
 chmod -R 755 /opt/prometheus
 ```
-
 #### Starting Prometius Container
 Run the command below to start the container.
 ```
 docker run -d -p 9090:9090 --name=prometheus  -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus prom/prometheus
 ```
-
 #### Test and surf to the address below
 ```
-echo http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:9090,g')
+echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
+curl -L  http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:9090,g')
 ```
-
 #### Stoping Prometius Container
 Run the command below to stop and remove the container.
 ```
 docker stop prometheus; docker rm prometheus
 ```
+
 ---
 ### Prometheus Node Exporter on Docker
-
+#### Starting Node Exporter Container
+Run the command below to start the container.
+```
+docker run -d -p 9100:9100 --name=node_exporter prom/node-exporter
+```
 #### Testing the metrics are exported
 ```
 echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
 curl -L "http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:9100,g')/metrics"
 ```
+#### Stoping Node Exporter Container
+Run the command below to stop and remove the container.
+```
+docker stop node_exporter; docker rm node_exporter
+```
+
+
 ---
 ### Grafana on Docker
 #### Basic Configuration
@@ -108,21 +117,18 @@ curl -L https://github.com/goharbor/harbor/releases/download/v2.7.4/harbor-onlin
 tar xzvf harbor-online-installer-v2.7.4.tgz
 mkdir -p /opt/harbor
 ```
-
 #### Configure the installer
 ```
 cd harbor
 rm ../harbor-online-installer*
 mv harbor.yml.tmpl harbor.yml
 ```
-
 Edit in `harbor.yml` values below and for this labb **comment out all the https configuration**.
 ```
 data_volume: /opt/harbor
 hostname: "$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
 hostname -I
 ```
-
 #### Run the installer
 ```
 ./install.sh
@@ -133,7 +139,6 @@ Start:
 ```
 docker-compose up -d
 ```
-
 Surf to:
 ```
 echo "http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
