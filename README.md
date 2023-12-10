@@ -1,8 +1,10 @@
 # Harbor Grafana Prometheus on Docker
 ## Introduction
-This repository contains instructions to help you run Harbor, Grafana, and Prometheus on the same Docker host. <br>
+This repository contains instructions to help you run Harbor, Grafana, and Prometheus and Node exporter on the same Photon OS Docker Host. <br>
+VMware [Photon OS](https://vmware.github.io/photon/#features) delivers just enough of a Linux operating system to efficiently run containers.<br> 
 
 ## Environment
+* OVA file from the [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS).
 * VMware Photon OS v5.0
 * Docker Client Engine - Community
 * * Version: 24.0.5
@@ -22,12 +24,11 @@ This repository contains instructions to help you run Harbor, Grafana, and Prome
 * [Prometheus config examples](https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-prometheus/prometheus-config-examples/docker-compose-linux)
 
 ## Installation
-### Photon OS Configuration
+### Making your Photon OS VM a Container Host
 ```
 hostnamectl hostname chost    # Setting the hostname to chost
 tdnf update -y 
-tdnf install tar -y 
-tdnf install docker-compose  
+tdnf install tar docker-compose  
 systemctl start docker 
 systemctl enable docker
 ```
