@@ -14,6 +14,13 @@ This repository contains instructions to help you run Harbor, Grafana, and Prome
 * * API version: 1.43 (minimum version 1.12)
 * * Go version: go1.20.10
 
+## Referenses
+* [Grafana on Docker](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker)
+* [Prometheus Installation](https://prometheus.io/docs/prometheus/latest/installation/)
+* [Node_exporter](https://github.com/prometheus/node_exporter)
+* [Node exporter using Docker](https://last9.hashnode.dev/how-to-download-and-run-node-exporter-using-docker)
+* [Prometheus config examples](https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-prometheus/prometheus-config-examples/docker-compose-linux)
+
 ## Installation
 ### Photon OS Configuration
 ```
@@ -28,7 +35,6 @@ systemctl enable docker
 ---
 
 ### Prometheus on Docker
-Installation guide from [prometheus.io](https://prometheus.io/docs/prometheus/latest/installation/)
 #### Basic Configuration
 Create config and data directories.
 ```
@@ -61,7 +67,6 @@ docker stop prometheus; docker rm prometheus
 ---
 
 ### Grafana on Docker
-Installation guide from [grafana.com](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker)
 #### Basic Configuration
 ```
 groupadd grafana
@@ -128,6 +133,3 @@ And chage therw harbor_admin_password: Harbor12345 to VMwareVM1! for example.
 ```
 docker-compose down
 ```
-https://github.com/prometheus/node_exporter
-https://last9.hashnode.dev/how-to-download-and-run-node-exporter-using-docker
-https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-prometheus/prometheus-config-examples/docker-compose-linux/
