@@ -149,7 +149,7 @@ docker-compose up -d
 Surf to:
 ```
 echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
-curl -L  http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')
+echo  http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')
 ```
 And chage therw harbor_admin_password: Harbor12345 to VMwareVM1! for example.
 
