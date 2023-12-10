@@ -68,9 +68,10 @@ Run the command below to stop and remove the container.
 ```
 docker stop prometheus; docker rm prometheus
 ```
+---
+### Prometheus Node exporter on Docker
 
 ---
-
 ### Grafana on Docker
 #### Basic Configuration
 ```
