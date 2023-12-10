@@ -8,7 +8,7 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 
 ---
 ## TABLE OF CONTENTS
-1. [Environment](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#environment)
+1. [Used Environment](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#environment)
 2. [Used Ports](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#used-ports)
 3. [Referenses](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#referenses)
 4. [Making your Photon OS VM a Container Host](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#making-your-photon-os-vm-a-container-host)
@@ -19,13 +19,16 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 
 
 ---
-## Environment
+## Used Environment
 * OVA file from the [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS).
 * VMware Photon OS v5.0
 * Docker Client Engine - Community
 * * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
 * Docker Server Engine - Community
 * * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
+* Virtual Machine
+* * 4vCPU, 8GB vRAM, 50 GB vDiskx
+ 
 
 ## Referenses
 * [Grafana on Docker](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker)
