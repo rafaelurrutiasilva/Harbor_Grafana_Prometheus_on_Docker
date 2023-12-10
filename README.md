@@ -32,6 +32,16 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 * [Node_exporter](https://github.com/prometheus/node_exporter)
 * [Node exporter using Docker](https://last9.hashnode.dev/how-to-download-and-run-node-exporter-using-docker)
 * [Prometheus config examples](https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-prometheus/prometheus-config-examples/docker-compose-linux)
+* [Harbor Configuration](https://goharbor.io/docs/2.2.0/install-config/configure-yml-file)
+* [Harbor Scrapping Metrics](https://goharbor.io/docs/2.2.0/administration/metrics/#scrapping-metrics-with-prometheus)
+
+## Used Ports
+Port | Notes
+-----|------
+9090 | Prometheus Server
+9100 | Prometheus Node Exporter
+9200 | Harbor metrics
+3000 | Grafana Server 
 
 ## Making your Photon OS VM a Container Host
 Photon OS provides a secure run-time environment for efficiently running containers. More information at [Frequently Asked Questions](https://github.com/vmware/photon/wiki/Frequently-Asked-Questions#photon-os-frequently-asked-questions)
