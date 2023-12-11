@@ -8,8 +8,9 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 
 ---
 ## STATUS
-<span style="color:red;">My work here is not finished yet. I need, among other things, to supplement with instructions on how each component should be configured to work together as well supplement with an overview image that explains how the whole thing works.</span>
-
+> [!warning]
+> My work here is not finished yet. I need, among other things, to supplement with instructions on how each component should be configured to work together as well supplement with an overview image that explains how the whole thing works.
+ 
 ---
 ## TABLE OF CONTENTS
 1. [Used Environment](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#environment)
@@ -24,15 +25,17 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 
 ---
 ## Used Environment
-* VMware Workstation 17 Pro, 17.5.0 build-22583795
-* OVA file from the [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS).
-* VMware Photon OS v5.0
-* Docker Client Engine - Community
-* * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
-* Docker Server Engine - Community
-* * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
-* Virtual Machine
-* * 4vCPU, 8GB vRAM, 50 GB vDiskx
+> [!important]
+> * Microsoft Windows 10 Enterprise, OS Version: 10.0.19045 N/A Build 19045
+> * VMware Workstation 17 Pro, 17.5.0 build-22583795
+> * OVA file from the [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS).
+> * VMware Photon OS v5.0
+> * Docker Client Engine - Community
+> * * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
+> * Docker Server Engine - Community
+> * * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
+> * Virtual Machine
+> * * 4vCPU, 8GB vRAM, 50 GB vDiskx
  
 
 ## Referenses
