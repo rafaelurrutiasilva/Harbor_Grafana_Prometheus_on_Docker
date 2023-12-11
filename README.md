@@ -23,6 +23,7 @@ My work here is not finished yet. I need, among other things, to supplement with
 
 ---
 ## Used Environment
+* VMware Workstation 17 Pro, 17.5.0 build-22583795
 * OVA file from the [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS).
 * VMware Photon OS v5.0
 * Docker Client Engine - Community
