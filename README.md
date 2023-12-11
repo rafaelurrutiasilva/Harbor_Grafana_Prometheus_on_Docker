@@ -204,3 +204,30 @@ And chage therw harbor_admin_password: Harbor12345 to VMwareVM1! for example.
 ```
 docker-compose down
 ```
+## Starting or Stopping all together
+### Starting all
+```
+if [[ ! $(docker network ls -f name=LocalLab -q ) ]];then
+        echo "Creatig a 'docker network' of type 'bridge' named 'LocalLab'"
+        docker network create --driver bridge LocalLab
+fi
+echo "Starting Prometheus"
+docker run -d -p 9090:9090 --name=prometheus  -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus --network=LocalLab prom/prometheus
+echo "Starting Node Exporter"
+docker run -d -p 9100:9100 --name=node_exporter --network=LocalLab prom/node-exporter
+echo "Starting Grafana"
+docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana  --network=LocalLab grafana/grafana-oss
+echo "Starting Harbor"
+docker-compose -f harbor/docker-compose.yml up -d
+```
+### Stopping all
+```
+echo "Stopping all Containers"
+docker stop prometheus node_exporter grafana
+docker rm prometheus node_exporter grafana
+docker-compose -f harbor/docker-compose.yml down
+if [[ $(docker network ls -f name=LocalLab -q ) ]];then
+        echo "Removing the 'docker network' LocalLab "
+        docker network rm LocalLab
+fi
+```
