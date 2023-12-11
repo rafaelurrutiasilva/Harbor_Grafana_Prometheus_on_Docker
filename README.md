@@ -67,6 +67,13 @@ systemctl enable docker
 ```
 
 ---
+## Container Host Network
+The docker network 'LocalLab' is created to interconnect all containers in this configuration. This network facilitates seamless communication between containers and assigns domain names, streamlining the entire setup process.
+```
+docker network create --driver bridge LocalLab
+```
+
+---
 ## Prometheus on Docker
 ### Basic Configuration
 Create config and data directories.
@@ -82,7 +89,7 @@ chmod -R 755 /opt/prometheus
 ### Starting Prometius Container
 Run the command below to start the container.
 ```
-docker run -d -p 9090:9090 --name=prometheus  -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus prom/prometheus
+docker run -d -p 9090:9090 --name=prometheus  -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus  --network=LocalLab prom/prometheus
 ```
 ### Test and surf to the address below
 ```
@@ -100,7 +107,7 @@ docker stop prometheus; docker rm prometheus
 ### Starting Node Exporter Container
 Run the command below to start the container.
 ```
-docker run -d -p 9100:9100 --name=node_exporter prom/node-exporter
+docker run -d -p 9100:9100 --name=node_exporter  --network=LocalLab prom/node-exporter
 ```
 ### Testing the metrics are exported
 ```
@@ -126,7 +133,7 @@ chown -R grafana:grafana  /opt/grafana
 ```
 ### Starting Grafana Container
 ```
-docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana  grafana/grafana-oss
+docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana   --network=LocalLab grafana/grafana-oss
 ```
 ### Test and surf to the address below
 Change the admin:admin passwd
