@@ -41,6 +41,7 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 ## Referenses
 * [Grafana on Docker](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker)
 * [Prometheus Installation](https://prometheus.io/docs/prometheus/latest/installation/)
+* [Prometheus Docker Compose](https://mxulises.medium.com/simple-prometheus-setup-on-docker-compose-f702d5f98579)
 * [Node_exporter](https://github.com/prometheus/node_exporter)
 * [Node exporter using Docker](https://last9.hashnode.dev/how-to-download-and-run-node-exporter-using-docker)
 * [Prometheus config examples](https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-prometheus/prometheus-config-examples/docker-compose-linux)
