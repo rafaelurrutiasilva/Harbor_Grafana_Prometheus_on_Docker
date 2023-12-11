@@ -147,14 +147,31 @@ tar xzvf harbor-online-installer-v2.7.4.tgz
 mkdir -p /opt/harbor
 ```
 ### Configure the installer
+> [!important]
+Before you run the installer script, `install.sh`, you need to create your **harbor.yml** from the template. Will need to handle the **hostname**, **HTTS configuration**, the **Data volume** as well uncomment the configuration for the **metric**. 
 ```
 cd harbor
 rm ../harbor-online-installer*
 mv harbor.yml.tmpl harbor.yml
 ```
-Edit in `harbor.yml` values below and for this labb **comment out all the https configuration**.
+I my ** harbor.yml** I'm using `data_volume: /opt/harbor`, my IP nr as hostname, no SSL (HTTPS part is commented out) and metric configuration as below.
 ```
+hostname: 192.168.157.131
+.
+.
+.
+metric:
+   enabled: true
+   port: 9200
+   path: /metrics
+.
+.
+.
 data_volume: /opt/harbor
+
+```
+
+```
 hostname: "$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
 ```
 ### Run the installer
