@@ -60,7 +60,7 @@ Photon OS provides a secure run-time environment for efficiently running contain
 ```
 hostnamectl hostname chost    # Setting the hostname to chost
 tdnf update -y 
-tdnf install tar docker-compose  
+tdnf install tar jq docker-compose  
 systemctl start docker 
 systemctl enable docker
 ```
