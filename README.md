@@ -7,6 +7,9 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 <br>
 
 ---
+## STATUS
+My work here is not finished yet. I need, among other things, to supplement with instructions on how each component should be configured to work together as well supplement with an overview image that explains how the whole thing works.*
+---
 ## TABLE OF CONTENTS
 1. [Used Environment](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#environment)
 2. [Used Ports](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#used-ports)
