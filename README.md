@@ -86,7 +86,7 @@ mkdir -p /opt/harbor
 ```
 ### Configure the installer
 > [!important]
-Before you run the installer script, `install.sh`, you need to create your **harbor.yml** from the template. Will need to handle the **hostname**, **HTTS configuration**, the **Data volume** as well uncomment the configuration for the **metric**. 
+Before you run the installer script, `install.sh`, you need to create your **harbor.yml** from the template. Will need to handle the **hostname**, **HTTS configuration**, the **Data volume**, the **skip_update** to avoid GitHub rate limiting issues as well uncomment the configuration for the **metric**. 
 ```
 cd harbor
 rm ../harbor-online-installer*
