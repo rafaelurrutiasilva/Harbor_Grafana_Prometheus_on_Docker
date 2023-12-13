@@ -27,8 +27,8 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 ---
 ## Used Environment
 > [!important]
-> 
- * Microsoft Windows 10 Enterprise, OS Version: 10.0.19045 N/A Build 19045
+> The following basic environment was used for all containers component see information from respectively application.
+* Microsoft Windows 10 Enterprise, OS Version: 10.0.19045 N/A Build 19045
  * VMware Workstation 17 Pro, 17.5.0 build-22583795
  * OVA file from the [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS).
  * VMware Photon OS v5.0
