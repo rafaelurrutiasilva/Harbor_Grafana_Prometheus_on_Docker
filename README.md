@@ -77,79 +77,6 @@ docker network inspect harbor_harbor
 ```
 
 ---
-## Prometheus on Docker
-### Basic Configuration
-Create config and data directories.
-```
-mkdir -p /opt/prometheus/etc /opt/prometheus/data
-```
-Copy now the [prometheus.yml](/etc/prometheus.yml) to `/opt/prometheus/etc`
-Continue then with the rest here.
-```
-chown -R nobody:nobody /opt/prometheus
-chmod -R 755 /opt/prometheus
-```
-### Starting Prometius Container
-Run the command below to start the container.
-```
-docker run -d -p 9090:9090 --name=prometheus  -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus  --network=LocalLab prom/prometheus
-```
-### Test and surf to the address below
-```
-echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
-curl -L  http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:9090,g')
-```
-### Stoping Prometius Container
-Run the command below to stop and remove the container.
-```
-docker stop prometheus; docker rm prometheus
-```
-
----
-## Prometheus Node Exporter on Docker
-### Starting Node Exporter Container
-Run the command below to start the container.
-```
-docker run -d -p 9100:9100 --name=node_exporter  --network=LocalLab prom/node-exporter
-```
-### Testing the metrics are exported
-```
-echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
-curl -L "http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:9100,g')/metrics"
-```
-### Stoping Node Exporter Container
-Run the command below to stop and remove the container.
-```
-docker stop node_exporter; docker rm node_exporter
-```
-
-
----
-## Grafana on Docker
-### Basic Configuration
-```
-groupadd grafana
-useradd --no-create-home --shell /bin/false grafana
-usermod -g grafana grafana
-mkdir -p /opt/grafana/data
-chown -R grafana:grafana  /opt/grafana
-```
-### Starting Grafana Container
-```
-docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana   --network=LocalLab grafana/grafana-oss
-```
-### Test and surf to the address below
-Change the admin:admin passwd
-```
-echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
-curl -L  http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:3000,g')
-```
-### Stoping Grafana Container
-```
-docker stop grafana; docker rm grafana
-```
-
----
 ## Harbor on Docker
 ### Get the Installer
 ```
@@ -214,6 +141,79 @@ And chage therw harbor_admin_password: Harbor12345 to VMwareVM1! for example.
 ```
 docker-compose down
 ```
+---
+## Prometheus on Docker
+### Basic Configuration
+Create config and data directories.
+```
+mkdir -p /opt/prometheus/etc /opt/prometheus/data
+```
+Copy now the [prometheus.yml](/etc/prometheus.yml) to `/opt/prometheus/etc`
+Continue then with the rest here.
+```
+chown -R nobody:nobody /opt/prometheus
+chmod -R 755 /opt/prometheus
+```
+### Starting Prometius Container
+Run the command below to start the container.
+```
+docker run -d -p 9090:9090 --name=prometheus  -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus  --network harbor_harbor prom/prometheus
+```
+### Test and surf to the address below
+```
+echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
+curl -L  http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:9090,g')
+```
+### Stoping Prometius Container
+Run the command below to stop and remove the container.
+```
+docker stop prometheus; docker rm prometheus
+```
+
+---
+## Prometheus Node Exporter on Docker
+### Starting Node Exporter Container
+Run the command below to start the container.
+```
+docker run -d -p 9100:9100 --name=node_exporter  --network harbor_harbor prom/node-exporter
+```
+### Testing the metrics are exported
+```
+echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
+curl -L "http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:9100,g')/metrics"
+```
+### Stoping Node Exporter Container
+Run the command below to stop and remove the container.
+```
+docker stop node_exporter; docker rm node_exporter
+```
+
+---
+## Grafana on Docker
+### Basic Configuration
+```
+groupadd grafana
+useradd --no-create-home --shell /bin/false grafana
+usermod -g grafana grafana
+mkdir -p /opt/grafana/data
+chown -R grafana:grafana  /opt/grafana
+```
+### Starting Grafana Container
+```
+docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana   --network harbor_harbor grafana/grafana-oss
+```
+### Test and surf to the address below
+Change the admin:admin passwd
+```
+echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
+curl -L  http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,:3000,g')
+```
+### Stoping Grafana Container
+```
+docker stop grafana; docker rm grafana
+```
+
+---
 ## Starting or Stopping all together
 ### Starting all
 ```
