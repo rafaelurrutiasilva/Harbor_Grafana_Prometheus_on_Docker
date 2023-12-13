@@ -248,7 +248,7 @@ fi
 ```
 
 ---
-## SMNP 
+## Exploring SNMP
 You my want to test SNMP... <br>
 1. For that I fisrt create a new network. the **snmpNet**.
 2. I start my SNMP simulator using the image **tandrup/snmpsim**.
