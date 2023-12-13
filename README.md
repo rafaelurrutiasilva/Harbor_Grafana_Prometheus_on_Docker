@@ -27,16 +27,17 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 ---
 ## Used Environment
 > [!important]
-> * Microsoft Windows 10 Enterprise, OS Version: 10.0.19045 N/A Build 19045
-> * VMware Workstation 17 Pro, 17.5.0 build-22583795
-> * OVA file from the [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS).
-> * VMware Photon OS v5.0
-> * Docker Client Engine - Community
-> * * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
-> * Docker Server Engine - Community
-> * * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
-> * Virtual Machine
-> * * 4vCPU, 8GB vRAM, 50 GB vDiskx
+> 
+ * Microsoft Windows 10 Enterprise, OS Version: 10.0.19045 N/A Build 19045
+ * VMware Workstation 17 Pro, 17.5.0 build-22583795
+ * OVA file from the [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS).
+ * VMware Photon OS v5.0
+ * Docker Client Engine - Community
+ * * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
+ * Docker Server Engine - Community
+ * * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
+ * Virtual Machine
+ * * 4vCPU, 8GB vRAM, 50 GB vDiskx
  
 
 ## Referenses
@@ -69,7 +70,9 @@ systemctl enable docker
 ```
 
 ---
+
 ## Container Host Network
+> [!important]
 The docker-compose for Habor create the **harbor_harbor** docker network. Is import that Harbor starts first and all the rest of the containers are also started in the samme network. This network facilitates seamless communication between containers and assigns domain names, streamlining the entire setup process.
 ```
 docker network ls
