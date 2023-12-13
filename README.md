@@ -70,9 +70,10 @@ systemctl enable docker
 
 ---
 ## Container Host Network
-The docker network 'LocalLab' is created to interconnect all containers in this configuration. This network facilitates seamless communication between containers and assigns domain names, streamlining the entire setup process.
+The docker-compose for Habor create the **harbor_harbor** docker network. Is import that Harbor starts first and all the rest of the containers are also started in the samme network. This network facilitates seamless communication between containers and assigns domain names, streamlining the entire setup process.
 ```
-docker network create --driver bridge LocalLab
+docker network ls
+docker network inspect harbor_harbor
 ```
 
 ---
@@ -178,7 +179,14 @@ metric:
 .
 .
 data_volume: /opt/harbor
-
+.
+.
+.
+trivy:
+  skip_update: true
+.
+.
+. 
 ```
 
 ```
