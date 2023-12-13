@@ -50,6 +50,8 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 * [Harbor Configuration](https://goharbor.io/docs/2.2.0/install-config/configure-yml-file)
 * [Harbor Reconfigure Manage](https://goharbor.io/docs/2.2.0/install-config/reconfigure-manage-lifecycle)
 * [Harbor Scrapping Metrics](https://goharbor.io/docs/2.2.0/administration/metrics/#scrapping-metrics-with-prometheus)
+* [SNMP Simulator](https://github.com/tandrup/docker-snmpsim)
+* [Image with Net-SNMP binaries](https://hub.docker.com/r/elcolio/net-snmp)
 
 ## Used Ports
 Port | Notes
@@ -243,4 +245,16 @@ if [[ $(docker network ls -f name=LocalLab -q ) ]];then
         echo "Removing the 'docker network' LocalLab "
         docker network rm LocalLab
 fi
+```
+
+---
+## SMNP 
+You my want to test SNMP... <br>
+1. For that I fisrt create a new network. the **snmpNet**.
+2. I start my SNMP simulator using the image **tandrup/snmpsim**.
+3. I test the simulator using the image **elcolio/net-snmp**.
+```
+docker network create --driver bridge snmpNet
+docker run -d -p 161:161/udp --network snmpNet --name snmpsimd --hostname snmpsimd tandrup/snmpsim
+docker run -t --rm  --network snmpNet elcolio/net-snmp snmpwalk -v2c -c public snmpNet.snmpd:161
 ```
