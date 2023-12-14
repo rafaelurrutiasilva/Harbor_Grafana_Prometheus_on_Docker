@@ -7,8 +7,8 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 <br>
 
 ---
-## 
-> [!warning]
+## Disclaimer
+> [!CAUTION]
 > This is intended for learning, testing, and experimenting. The focus is not on security or creating an operational environment suitable for production.
 ---
 ## STATUS
