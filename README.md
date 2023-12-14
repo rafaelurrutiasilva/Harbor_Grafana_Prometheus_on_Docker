@@ -268,5 +268,6 @@ docker run -d -p 161:161/udp --network snmpNet --name snmpsimd --hostname snmpsi
 ### SNMP client tools on Docker
 I test the simulator using the image **elcolio/net-snmp**.
 ```
-docker run -t --rm  --network snmpNet elcolio/net-snmp snmpwalk -v2c -c public snmpNet.snmpd:161
+docker run -t --rm  --network snmpNet elcolio/net-snmp snmpwalk -v2c -c public snmpsimd:161
 ```
+You don't need to specify the port nr. 
