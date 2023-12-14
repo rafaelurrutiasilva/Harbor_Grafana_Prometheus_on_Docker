@@ -12,7 +12,7 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 > This is intended for learning, testing, and experimenting. The focus is not on security or creating an operational environment suitable for production.
 ---
 ## STATUS
-> [!warning]
+> [!NOTE]  
 > My work here is not finished yet. I need, among other things, to supplement with instructions on how each component should be configured to work together as well supplement with an overview image that explains how the whole thing works.
  
 ---
@@ -31,7 +31,7 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 
 ---
 ## Used Environment
-> [!important]
+> [!TIP]
 > The following basic environment was used for all containers component see information from respectively application.
 * Microsoft Windows 10 Enterprise, OS Version: 10.0.19045 N/A Build 19045
  * VMware Workstation 17 Pro, 17.5.0 build-22583795
@@ -255,11 +255,18 @@ fi
 ---
 ## Exploring SNMP
 You my want to test SNMP... <br>
-1. For that I fisrt create a new network. the **snmpNet**.
-2. I start my SNMP simulator using the image **tandrup/snmpsim**.
-3. I test the simulator using the image **elcolio/net-snmp**.
+### Own docker network
+For that I fisrt create a new network. the **snmpNet**.
 ```
 docker network create --driver bridge snmpNet
+```
+### SNMP simulator on Docker
+I start my SNMP simulator using the image **tandrup/snmpsim**.
+```
 docker run -d -p 161:161/udp --network snmpNet --name snmpsimd --hostname snmpsimd tandrup/snmpsim
+```
+### SNMP client tools on Docker
+I test the simulator using the image **elcolio/net-snmp**.
+```
 docker run -t --rm  --network snmpNet elcolio/net-snmp snmpwalk -v2c -c public snmpNet.snmpd:161
 ```
