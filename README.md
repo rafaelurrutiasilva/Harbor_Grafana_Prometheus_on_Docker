@@ -21,8 +21,8 @@ Utilizing a Container Host can be the easiest way to test and learn new ideas an
 15. [Prometheus Node Exporter on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#prometheus-node-exporter-on-docker)
 16. [Grafana on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#grafana-on-docker)
 17. [Harbor on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#harbor-on-docker)
-18. [Starting or Stopping all together](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/blob/main/README.md#starting-or-stopping-all-together)
-19. [Exploring SNMP](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/blob/main/README.md#exploring-snmp)
+18. [Starting or Stopping all together](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/blob/main/#starting-or-stopping-all-together)
+19. [Extra](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/blob/main/#extra)
 
 ## Introduction
 This repository includes instructions to guide you through the installation and execution of Harbor, Grafana, Prometheus, and Prometheus Node Exporter on a single [Photon OS](https://vmware.github.io/photon/#features) Docker Host. By following these instructions, you will gain insights into pulling and running container images on the same Container Host. Subsequently, you will be able to monitor machine and application metrics, including those of Harbor, using all the concurrently running containers.
@@ -97,7 +97,6 @@ systemctl start docker
 systemctl enable docker
 ```
 
-
 ## Container Host Network
 > [!important]
 The docker-compose for Habor create the **harbor_harbor** docker network. Is import that Harbor starts first and all the rest of the containers are also started in the samme network. This network facilitates seamless communication between containers and assigns domain names, streamlining the entire setup process.
@@ -170,7 +169,7 @@ And chage therw harbor_admin_password: Harbor12345 to VMwareVM1! for example.
 ```
 docker-compose down
 ```
----
+
 ## Prometheus on Docker
 ### Basic Configuration
 Create config and data directories.
@@ -199,7 +198,6 @@ Run the command below to stop and remove the container.
 docker stop prometheus; docker rm prometheus
 ```
 
----
 ## Prometheus Node Exporter on Docker
 ### Starting Node Exporter Container
 Run the command below to start the container.
@@ -217,7 +215,6 @@ Run the command below to stop and remove the container.
 docker stop node_exporter; docker rm node_exporter
 ```
 
----
 ## Grafana on Docker
 ### Basic Configuration
 ```
@@ -242,7 +239,6 @@ curl -L  http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,
 docker stop grafana; docker rm grafana
 ```
 
----
 ## Starting or Stopping all together
 ### Starting all
 ```
@@ -271,5 +267,5 @@ if [[ $(docker network ls -f name=LocalLab -q ) ]];then
 fi
 ```
 
----
-## Extra 
+## Extra
+I also attempted to address the process of scraping metrics from an SNMP environment. While I'm not certain if I will proceed with this, you can find a brief overview of how to augment this environment with an SNMP simulator and the necessary tools in my supplementary document. For more details, refer to my [Extra Document]https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/blob/main/Extra/README.md#extra).
