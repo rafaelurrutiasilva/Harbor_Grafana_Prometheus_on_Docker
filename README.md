@@ -225,7 +225,8 @@ To configure the Docker daemon as a Prometheus target, you need to specify the m
 In my case I needed to create the folder `/etc/docker/` and the also the file `/etc/docker/daemon.json`.
 ```
 {
-  "metrics-addr": "127.0.0.1:9323"
+  "metrics-addr": "127.0.0.1:9323",
+   "experimental" : true
 }
 ```
 Restart the Docker deamon `systemctl restart docker` and test if you can see any metrics `curl localhost:9323/metrics`.
