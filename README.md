@@ -1,51 +1,68 @@
 # Harbor, Grafana, Prometheus on Docker
-## Introduction
-This repository contains instructions to help you run Harbor, Grafana, and Prometheus and Node exporter on the same Photon OS Docker Host.
-VMware [Photon OS](https://vmware.github.io/photon/#features) delivers just enough of a Linux operating system to efficiently run containers.<br> 
-<br>
-Here, you will learn how to pull and run container images for Prometheus, Node Exporter, Grafana, and Harbor. Subsequently, you should be able to monitor machine and application metrics, including Harbor, using all the running containers.
-<br>
+## Abstract
+Utilizing a Container Host can be the easiest way to test and learn new ideas and concepts in the computer world. In this particular case, I was seeking a method to initiate testing and learning more about observability, visualization, and exploration of all metrics I could scrape.
 
 ---
-## Disclaimer
-> [!CAUTION]
-> This is intended for learning, testing, and experimenting. The focus is not on security or creating an operational environment suitable for production.
----
-## STATUS
+## Table of Contents
+1. [Introduction](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#introduction)
+2. [Goals and Objectives](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#goals-and-objectives)
+3. [Target Audience](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#target-audience)
+4. [Document Status](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#document-status)
+5. [Disclaimer](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#disclaimer)
+6. [Scope and Limitations](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#scope-and-limitations)
+7. [Environment](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#environment)
+8. [Acknowledgments](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#acknowledgments)
+9. [References](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#references)
+10. [Conclusion](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#conclusion)
+11. [Used Ports](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#used-ports)
+12. [Referenses](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#referenses)
+13. [Making your Photon OS VM a Container Host](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#making-your-photon-os-vm-a-container-host)
+14. [Prometheus on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#prometheus-on-docker)
+15. [Prometheus Node Exporter on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#prometheus-node-exporter-on-docker)
+16. [Grafana on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#grafana-on-docker)
+17. [Harbor on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#harbor-on-docker)
+18. [Starting or Stopping all together](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/blob/main/README.md#starting-or-stopping-all-together)
+19. [Exploring SNMP](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/blob/main/README.md#exploring-snmp)
+
+## Introduction
+This repository includes instructions to guide you through the installation and execution of Harbor, Grafana, Prometheus, and Prometheus Node Exporter on a single [Photon OS](https://vmware.github.io/photon/#features) Docker Host. By following these instructions, you will gain insights into pulling and running container images on the same Container Host. Subsequently, you will be able to monitor machine and application metrics, including those of Harbor, using all the concurrently running containers.
+
+## Goals and Objectives
+
+## Target Audience
+
+## Document Status
 > [!NOTE]  
 > My work here is not finished yet. I need, among other things, to supplement with instructions on how each component should be configured to work together as well supplement with an overview image that explains how the whole thing works.
- 
----
-## TABLE OF CONTENTS
-1. [Used Environment](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#environment)
-2. [Used Ports](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#used-ports)
-3. [Referenses](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#referenses)
-4. [Making your Photon OS VM a Container Host](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#making-your-photon-os-vm-a-container-host)
-5. [Prometheus on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#prometheus-on-docker)
-6. [Prometheus Node Exporter on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#prometheus-node-exporter-on-docker)
-7. [Grafana on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#grafana-on-docker)
-8. [Harbor on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#harbor-on-docker)
-9. [Starting or Stopping all together](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/blob/main/README.md#starting-or-stopping-all-together)
-10.[Exploring SNMP](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/blob/main/README.md#exploring-snmp)
 
+## Disclaimer
+> [!CAUTION]
+> This is intended for learning, testing, and experimentation. The emphasis is not on security or creating an operational environment suitable for production.
 
----
-## Used Environment
+## Scope and Limitations
+A quick method to set up an environment for installing and testing Harbor, Grafana, Prometheus, and Node Exporter on a single Container Host, all with the aim of learning more about observability.<br> 
+This is not intended for use as a reference for a production environment and does not focus on all the security considerations such an environment requires.
+
+## Environment
 > [!TIP]
-> The following basic environment was used for all containers component see information from respectively application.
-* Microsoft Windows 10 Enterprise, OS Version: 10.0.19045 N/A Build 19045
- * VMware Workstation 17 Pro, 17.5.0 build-22583795
- * OVA file from the [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS).
- * VMware Photon OS v5.0
- * Docker Client Engine - Community
- * * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
- * Docker Server Engine - Community
- * * Version: 24.0.5, API version: 1.43, Go version: go1.20.10
- * Virtual Machine
- * * 4vCPU, 8GB vRAM, 50 GB vDiskx
- 
+> The following computer environment was utilized. For details regarding container image versions and other components, please refer to the respective sections in the application documentation available here.
+```
+Microsoft Windows 10 Enterprise, OS Version: 10.0.19045 N/A Build 19045
+VMware Workstation 17 Pro, 17.5.0 build-22583795
+VMware Photon OS v5.0
+Docker Client Engine - Community
+Version: 24.0.5, API version: 1.43, Go version: go1.20.10
+Docker Server Engine - Community
+Version: 24.0.5, API version: 1.43, Go version: go1.20.10
+Virtual Machine
+4vCPU, 8GB vRAM, 50 GB vDiskx
+```
+
+## Acknowledgments
+Big thanks to all the people involved in the material I refer to in my links! I would also like to express gratitude to everyone out there, including my colleagues and friends, who are creating things that help and inspire us to continue learning and exploring this never-ending world of computer technology.
 
 ## Referenses
+* [Downloading Photon OS](https://github.com/vmware/photon/wiki/Downloading-Photon-OS)
 * [Grafana on Docker](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker)
 * [Prometheus Installation](https://prometheus.io/docs/prometheus/latest/installation/)
 * [Prometheus Docker Compose](https://mxulises.medium.com/simple-prometheus-setup-on-docker-compose-f702d5f98579)
@@ -57,6 +74,10 @@ Here, you will learn how to pull and run container images for Prometheus, Node E
 * [Harbor Scrapping Metrics](https://goharbor.io/docs/2.2.0/administration/metrics/#scrapping-metrics-with-prometheus)
 * [SNMP Simulator](https://github.com/tandrup/docker-snmpsim)
 * [Image with Net-SNMP binaries](https://hub.docker.com/r/elcolio/net-snmp)
+
+## Conclusion
+> [!NOTE]
+> No there jet!
 
 ## Used Ports
 Port | Notes
@@ -76,7 +97,6 @@ systemctl start docker
 systemctl enable docker
 ```
 
----
 
 ## Container Host Network
 > [!important]
@@ -86,7 +106,6 @@ docker network ls
 docker network inspect harbor_harbor
 ```
 
----
 ## Harbor on Docker
 ### Get the Installer
 ```
