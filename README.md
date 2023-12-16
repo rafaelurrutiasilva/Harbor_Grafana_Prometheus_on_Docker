@@ -268,4 +268,4 @@ fi
 ```
 
 ## Extra
-I also attempted to address the process of scraping metrics from an SNMP environment. While I'm not certain if I will proceed with this, you can find a brief overview of how to augment this environment with an SNMP simulator and the necessary tools in my supplementary document. For more details, refer to my [Extra Document]https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/blob/main/Extra/README.md#extra).
+I also attempted to address the process of scraping metrics from an SNMP environment. While I'm not certain if I will proceed with this, you can find a brief overview of how to augment this environment with an SNMP simulator and the necessary tools in my supplementary document. For more details, refer to my [Extra Document](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/blob/main/Extra/README.md#extra).
