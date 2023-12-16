@@ -85,8 +85,11 @@ Port | Notes
 -----|------
 9090 | Prometheus Server
 9100 | Prometheus Node Exporter
-9200 | Harbor metrics
+9200 | Harbor Metrics
+80   | Harbor Portal
 3000 | Grafana Server 
+9323 | Docker Daemon Metrics
+
 
 ## Making your Photon OS VM a Container Host
 Photon OS provides a secure run-time environment for efficiently running containers. More information at [Frequently Asked Questions](https://github.com/vmware/photon/wiki/Frequently-Asked-Questions#photon-os-frequently-asked-questions)
