@@ -100,7 +100,7 @@ systemctl enable docker
 
 ## Harbor Container Network
 > [!important]
-The docker-compose for Habor create the **harbor_harbor** docker network. Is import that Harbor starts first and all the rest of the containers are also started in the samme network. This network facilitates seamless communication between containers and assigns domain names, streamlining the entire setup process.
+The docker-compose for Habor create the ***harbor_harbor*** docker network. Is import that Harbor starts first and all the rest of the containers are also started in the samme network. This network facilitates seamless communication between containers and assigns domain names, streamlining the entire setup process.
 ```
 docker network ls
 docker network inspect harbor_harbor
@@ -115,7 +115,7 @@ mkdir -p /opt/harbor
 ```
 ### Configure the installer
 > [!important]
-Before you run the installer script, `install.sh`, you need to create your **harbor.yml** from the template. Will need to handle the **hostname**, **HTTS configuration**, the **Data volume**, the **skip_update** to avoid GitHub rate limiting issues as well uncomment the configuration for the **metric**. 
+Before you run the installer script, `install.sh`, you need to create your **harbor.yml** from the template. Will need to handle the *hostname*, *HTTS configuration*, the *Data volume*, the *skip_update* to avoid GitHub rate limiting issues as well uncomment the configuration for the *metric*. 
 ```
 cd harbor
 rm ../harbor-online-installer*
@@ -149,7 +149,7 @@ trivy:
 hostname: "$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
 ```
 ### Run the installer
-Everytime the `install.sh` is run, all the values in the file **harbor.yml** will be used!
+Everytime the `install.sh` is run, all the values in the file *harbor.yml* will be used!
 ```
 ./install.sh
 ```
