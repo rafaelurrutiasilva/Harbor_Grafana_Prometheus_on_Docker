@@ -146,7 +146,7 @@ Checking the IP number of the host.
 hostname: "$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
 ```
 ### Run the installer
-Everytime the `install.sh` is run, all the values in the file *harbor.yml* will be used!
+When `install.sh` is executed, it utilizes the values from the harbor.yml file. Should you make changes to the configuration in the *harbor.yml* file, simply run the prepare script instead of re-executing `install.sh`.
 ```
 ./install.sh
 ```
