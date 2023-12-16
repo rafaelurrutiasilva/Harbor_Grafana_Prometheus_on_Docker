@@ -245,30 +245,39 @@ docker stop grafana; docker rm grafana
 
 ## Starting or Stopping all together
 ### Starting all
+The script [start_all.sh](script/start_all.sh), shown below, can be used to start all the containers in the appropriate order.
 ```
-if [[ ! $(docker network ls -f name=LocalLab -q ) ]];then
-        echo "Creatig a 'docker network' of type 'bridge' named 'LocalLab'"
-        docker network create --driver bridge LocalLab
+#!/bin/bash
+HARBOR_COMPOSE_FILE=~/harbor/docker-compose.yml
+CONTAINERS="prometheus node-exporter grafana"
+
+echo "Starting Harbor... this create a harbor_harbor bridge network as well!"
+docker-compose -f $HARBOR_COMPOSE_FILE up -d
+
+if [[ ! $(docker network ls -f name=harbor_harbor -q ) ]];then
+                echo "ERROR - The harbor_harbor docker network is missing!"
+                exit
+else
+        NETWORK="--network harbor_harbor"
 fi
 echo "Starting Prometheus"
-docker run -d -p 9090:9090 --name=prometheus  -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus --network=LocalLab prom/prometheus
+docker run -d -p 9090:9090 --name=prometheus  --hostname prometheus -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus $NETWORK prom/prometheus
 echo "Starting Node Exporter"
-docker run -d -p 9100:9100 --name=node_exporter --network=LocalLab prom/node-exporter
+docker run -d -p 9100:9100 --name=node-exporter  --hostname node-exporter $NETWORK prom/node-exporter
 echo "Starting Grafana"
-docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana  --network=LocalLab grafana/grafana-oss
-echo "Starting Harbor"
-docker-compose -f harbor/docker-compose.yml up -d
+docker run -d -p 3000:3000 --name=grafana  --hostname grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana  $NETWORK grafana/grafana-oss
 ```
+
 ### Stopping all
+As well the script [stop_all.sh](script/stop_all.sh), shown below, can be used to stop all the containers in the appropriate order.
 ```
+#!/bin/bash
+HARBOR_COMPOSE_FILE=~/harbor/docker-compose.yml
+CONTAINERS="prometheus node-exporter grafana"
 echo "Stopping all Containers"
-docker stop prometheus node_exporter grafana
-docker rm prometheus node_exporter grafana
-docker-compose -f harbor/docker-compose.yml down
-if [[ $(docker network ls -f name=LocalLab -q ) ]];then
-        echo "Removing the 'docker network' LocalLab "
-        docker network rm LocalLab
-fi
+docker-compose -f $HARBOR_COMPOSE_FILE down
+docker stop $CONTAINERS
+docker rm $CONTAINERS
 ```
 
 ## Extra
