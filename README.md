@@ -103,14 +103,6 @@ systemctl start docker
 systemctl enable docker
 ```
 
-## Harbor Container Network
-> [!important]
-The docker-compose for Habor create the ***harbor_harbor*** docker network. Is import that Harbor starts first and all the rest of the containers are also started in the samme network. This network facilitates seamless communication between containers and assigns domain names, streamlining the entire setup process.
-```
-docker network ls
-docker network inspect harbor_harbor
-```
-
 ## Harbor on Docker
 ### Get the Installer
 ```
@@ -149,7 +141,7 @@ trivy:
 .
 . 
 ```
-
+Checking the IP number of the host.
 ```
 hostname: "$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
 ```
@@ -158,7 +150,13 @@ Everytime the `install.sh` is run, all the values in the file *harbor.yml* will 
 ```
 ./install.sh
 ```
-
+### Harbor Container Network
+> [!important]
+The docker-compose for Habor create the ***harbor_harbor*** docker network. Is import that Harbor starts first and all the rest of the containers are also started in the samme network. This network facilitates seamless communication between containers and assigns domain names, streamlining the entire setup process.
+```
+docker network ls
+docker network inspect harbor_harbor
+```
 ### Starting and Test the Harbor Container
 Start:
 ```
