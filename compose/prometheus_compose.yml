@@ -1,3 +1,4 @@
+# To avoid complexity and potential issues, I am using the same version as Harbor does.
 version: '2.3'
 
 name: prometeus
