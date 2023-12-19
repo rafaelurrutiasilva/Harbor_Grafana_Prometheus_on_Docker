@@ -266,11 +266,12 @@ The best approach for starting and stopping all containers is by utilizing the D
 ```
 for FILE in ~/harbor/docker-compose.yml ~/prometheus/docker-compose.yml; do docker-compose -f $FILE up -d
 ```
-
 ### Stopping
 ```
 for FILE in ~/harbor/docker-compose.yml ~/prometheus/docker-compose.yml; do docker-compose -f $FILE down
 ```
+### Scripts
+You can also take a look at my start and stop scripts located under my directory [script](script).
 
 ## Extra
 I also attempted to address the process of scraping metrics from an SNMP environment. While I'm not certain if I will proceed with this, you can find a brief overview of how to augment this environment with an SNMP simulator and the necessary tools in my supplementary document. For more details, refer to my [Extra Document](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/blob/main/Extra/README.md#extra).
