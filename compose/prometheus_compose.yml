@@ -1,1 +1,45 @@
+version: '2.3'
 
+name: prometeus
+#name: prometeus_components
+services:
+    prometheus:
+        ports:
+            - 9090:9090
+        container_name: prometheus
+        hostname: prometheus
+        volumes:
+            - /opt/prometheus/etc:/etc/prometheus
+            - /opt/prometheus/data:/prometheus
+        networks:
+            - prometheus_net
+            - harbor_harbor
+        image: prom/prometheus
+
+    node-exporter:
+        ports:
+            - 9100:9100
+        container_name: node-exporter
+        hostname: node-exporter
+        networks:
+            - prometheus_net
+        image: prom/node-exporter
+
+    grafana-oss:
+        ports:
+            - 3000:3000
+        container_name: grafana
+        hostname: grafana
+        user: 1000:1000
+        volumes:
+            - /opt/grafana/data:/var/lib/grafana
+        networks:
+            - prometheus_net
+        image: grafana/grafana-oss
+
+# Create the net network be used for all the prometheus component
+networks:
+  prometheus_net:
+    driver: bridge
+  harbor_harbor:
+    external: true
