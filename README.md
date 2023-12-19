@@ -34,6 +34,9 @@ This repository includes instructions to guide you through the installation and 
 ## Goals and Objectives
 Establish a baseline for a Docker Container Host based on Photon OS. Utilize the Container Host to run all applications within containers. Configure Harbor, Docker Host, and Virtual Machine to independently expose their metrics. Set up Prometheus and the Node Exporter to scrape the metrics and, finally, visualize them using Grafana with appropriate dashboards.
 
+## Method 
+How We Did It. Approach. Our Way
+
 ## Target Audience
 Designed for anyone looking to navigate and gain insights into testing and learning these matters, but perhaps primarily for those, like me, who have just embarked on their journey and need a helping hand.
 
