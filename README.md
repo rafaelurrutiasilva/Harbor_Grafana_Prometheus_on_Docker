@@ -36,7 +36,7 @@ This repository includes instructions to guide you through the installation and 
 Establish a baseline for a Docker Container Host based on Photon OS. Utilize the Container Host to run all applications within containers. Configure Harbor, Docker Host, and Virtual Machine to independently expose their metrics. Set up Prometheus and the Node Exporter to scrape the metrics and, finally, visualize them using Grafana with appropriate dashboards.
 
 ## Method 
-How We Did It. Approach. Our Way
+I began by identifying appropriate container images for the components I intended to work with. Subsequently, I initiated the process of launching these containers. As Harbor establishes its own Docker network, my initial objective was to consolidate all components within the same network, the *harbor_harbor* network. After confirming successful container startup and the scraping of metric, I opted to establish a distinct network for Prometheus components, the *prometheus_net*. Consequently, I integrated Prometheus into both the Harbor and and its dedicated network.
 
 ## Target Audience
 Designed for anyone looking to navigate and gain insights into testing and learning these matters, but perhaps primarily for those, like me, who have just embarked on their journey and need a helping hand.
