@@ -193,9 +193,10 @@ chown -R nobody:nobody /opt/prometheus
 chmod -R 755 /opt/prometheus
 ```
 ### Starting Prometius Container
-Run the command below to start the container.
+Run the command below to create the docker network *prometheus_net* and the start the container.
 ```
-docker run -d -p 9090:9090 --name=prometheus  -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus  --network harbor_harbor prom/prometheus
+docker network create prometheus_net
+docker run -d -p 9090:9090 --name=prometheus  -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus  --network prometheus_net prom/prometheus
 ```
 ### Test and surf to the address below
 ```
@@ -212,7 +213,7 @@ docker stop prometheus; docker rm prometheus
 ### Starting Node Exporter Container
 Run the command below to start the container.
 ```
-docker run -d -p 9100:9100 --name=node_exporter  --network harbor_harbor prom/node-exporter
+docker run -d -p 9100:9100 --name=node_exporter  --network prometheus_net prom/node-exporter
 ```
 ### Testing the metrics are exported
 ```
@@ -246,7 +247,7 @@ chown -R grafana:grafana  /opt/grafana
 ```
 ### Starting Grafana Container
 ```
-docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana   --network harbor_harbor grafana/grafana-oss
+docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana   --network prometheus_net grafana/grafana-oss
 ```
 ### Test and surf to the address below
 Change the admin:admin passwd
@@ -260,40 +261,16 @@ docker stop grafana; docker rm grafana
 ```
 
 ## Starting or Stopping all together
-### Starting all
-The script [start_all.sh](script/start_all.sh), shown below, can be used to start all the containers in the appropriate order.
+The best way to start and stop all the containers is using the docker-compose files. The harbor installation generate one and for the prometheus components you can use my [prometheus_compose.yml](compose/prometheus_compose.yml).<br>
+All can be done at ones using:
+### Starting
 ```
-#!/bin/bash
-HARBOR_COMPOSE_FILE=~/harbor/docker-compose.yml
-CONTAINERS="prometheus node-exporter grafana"
-
-echo "Starting Harbor... this create a harbor_harbor bridge network as well!"
-docker-compose -f $HARBOR_COMPOSE_FILE up -d
-
-if [[ ! $(docker network ls -f name=harbor_harbor -q ) ]];then
-                echo "ERROR - The harbor_harbor docker network is missing!"
-                exit
-else
-        NETWORK="--network harbor_harbor"
-fi
-echo "Starting Prometheus"
-docker run -d -p 9090:9090 --name=prometheus  --hostname prometheus -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus $NETWORK prom/prometheus
-echo "Starting Node Exporter"
-docker run -d -p 9100:9100 --name=node-exporter  --hostname node-exporter $NETWORK prom/node-exporter
-echo "Starting Grafana"
-docker run -d -p 3000:3000 --name=grafana  --hostname grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana  $NETWORK grafana/grafana-oss
+for FILE in ~/harbor/docker-compose.yml ~/prometheus/docker-compose.yml; do docker-compose -f $FILE up -d
 ```
 
-### Stopping all
-As well the script [stop_all.sh](script/stop_all.sh), shown below, can be used to stop all the containers in the appropriate order.
+### Stopping
 ```
-#!/bin/bash
-HARBOR_COMPOSE_FILE=~/harbor/docker-compose.yml
-CONTAINERS="prometheus node-exporter grafana"
-echo "Stopping all Containers"
-docker-compose -f $HARBOR_COMPOSE_FILE down
-docker stop $CONTAINERS
-docker rm $CONTAINERS
+for FILE in ~/harbor/docker-compose.yml ~/prometheus/docker-compose.yml; do docker-compose -f $FILE down
 ```
 
 ## Extra
