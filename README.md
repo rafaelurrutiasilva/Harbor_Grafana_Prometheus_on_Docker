@@ -80,15 +80,12 @@ This is not intended for use as a reference for a production environment and doe
 > [!TIP]
 > The following computer environment was utilized. For details regarding container image versions and other components, please refer to the respective sections in the application documentation available here.
 ```
-Microsoft Windows 10 Enterprise, OS Version: 10.0.19045 N/A Build 19045
-VMware Workstation 17 Pro, 17.5.0 build-22583795
-VMware Photon OS v5.0
-Docker Client Engine - Community
-Version: 24.0.5, API version: 1.43, Go version: go1.20.10
-Docker Server Engine - Community
-Version: 24.0.5, API version: 1.43, Go version: go1.20.10
-Virtual Machine
-4vCPU, 8GB vRAM, 50 GB vDiskx
+Microsoft Windows 10 Enterprise, OS : Version 10.0.19045 N/A Build 19045
+VMware Workstation 17 Pro: Version 17.5.0 build-22583795
+VMware Photon OS: Version 5.0
+Docker Client Engine - Community: Version 24.0.5, API version: 1.43, Go version: go1.20.10
+Docker Server Engine - Community: Version 24.0.5, API version: 1.43, Go version: go1.20.10
+Virtual Machine: 2vCPU, 8GB vRAM, 50 GB vDiskx
 ```
 
 ## Acknowledgments
