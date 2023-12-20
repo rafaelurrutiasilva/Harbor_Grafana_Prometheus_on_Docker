@@ -254,7 +254,8 @@ chown -R grafana:grafana  /opt/grafana
 ```
 ### Starting Grafana Container
 ```
-docker run -d -p 3000:3000 --name=grafana --user "$(id -u grafana)":"$(id -g grafana)" -v /opt/grafana/data:/var/lib/grafana   --network prometheus_net grafana/grafana-oss
+USER_GRAFANA=$(id -u grafana)":"$(id -g grafana)
+docker run -d -p 3000:3000 --name=grafana --user $USER_GRAFANA -v /opt/grafana/data:/var/lib/grafana --network prometheus_net grafana/grafana-oss
 ```
 ### Test and surf to the address below
 Change the admin:admin passwd
