@@ -104,7 +104,7 @@ Photon OS provides a secure run-time environment for efficiently running contain
 ```
 hostnamectl hostname chost    # Setting the hostname to chost
 tdnf update -y 
-tdnf install tar jq docker-compose  
+tdnf install tar jq docker-compose git  
 systemctl start docker 
 systemctl enable docker
 ```
@@ -186,7 +186,7 @@ Create config and data directories.
 ```
 mkdir -p /opt/prometheus/etc /opt/prometheus/data
 ```
-Copy now the [prometheus.yml](/etc/prometheus.yml) to `/opt/prometheus/etc`
+Please copy the [prometheus.yml](/etc/prometheus.yml) file to the /opt/prometheus/etc directory. Within the [compese](/compose) directory, you will find two files that can be utilized for different scenarios.
 Continue then with the rest here.
 ```
 chown -R nobody:nobody /opt/prometheus
