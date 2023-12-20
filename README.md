@@ -39,7 +39,7 @@ This repository includes instructions to guide you through the installation and 
 ## Goals and Objectives
 Establish a baseline for a Docker Container Host based on Photon OS. Utilize the Container Host to run all applications within containers. Configure Harbor, Docker Host, and Virtual Machine to independently expose their metrics. Set up Prometheus and the Node Exporter to scrape the metrics and, finally, visualize them using Grafana with appropriate dashboards.
 
-## Method 
+## Method
 I began by identifying appropriate container images for the components I intended to work with. Subsequently, I initiated the process of launching these containers. As Harbor establishes its own Docker network, my initial objective was to consolidate all components within the same network, the *harbor_harbor* network. After confirming successful container startup and the scraping of metric, I opted to establish a distinct network for Prometheus components, the *prometheus_net*. Consequently, I integrated Prometheus into both the Harbor and and its dedicated network.
 <br>
 
@@ -57,7 +57,7 @@ My work here is mostly completed at the moment. There might be some updates if I
 > This is intended for learning, testing, and experimentation. The emphasis is not on security or creating an operational environment suitable for production.
 
 ## Scope and Limitations
-A quick method to set up an environment for installing and testing Harbor, Grafana, Prometheus, and Node Exporter on a single Container Host, all with the aim of learning more about observability.<br> 
+A quick method to set up an environment for installing and testing Harbor, Grafana, Prometheus, and Node Exporter on a single Container Host, all with the aim of learning more about observability.<br>
 This is not intended for use as a reference for a production environment and does not focus on all the security considerations such an environment requires.
 
 ## Environment
@@ -101,7 +101,7 @@ Port | Notes
 9100 | Prometheus Node Exporter
 9200 | Harbor Metrics
 80   | Harbor Portal
-3000 | Grafana Server 
+3000 | Grafana Server
 9323 | Docker Daemon Metrics
 
 
@@ -109,9 +109,9 @@ Port | Notes
 Photon OS provides a secure run-time environment for efficiently running containers. More information at [Frequently Asked Questions](https://github.com/vmware/photon/wiki/Frequently-Asked-Questions#photon-os-frequently-asked-questions)
 ```
 hostnamectl hostname chost    # Setting the hostname to chost
-tdnf update -y 
-tdnf install tar jq docker-compose git  
-systemctl start docker 
+tdnf update -y
+tdnf install tar jq docker-compose git
+systemctl start docker
 systemctl enable docker
 ```
 
@@ -124,7 +124,7 @@ mkdir -p /opt/harbor
 ```
 ### Configure the installer
 > [!IMPORTANT]
-Before you run the installer script, `install.sh`, you need to create your **harbor.yml** from the template. Will need to handle the *hostname*, *HTTS configuration*, the *Data volume*, the *skip_update* to avoid GitHub rate limiting issues as well uncomment the configuration for the *metric*. 
+Before you run the installer script, `install.sh`, you need to create your **harbor.yml** from the template. Will need to handle the *hostname*, *HTTS configuration*, the *Data volume*, the *skip_update* to avoid GitHub rate limiting issues as well uncomment the configuration for the *metric*.
 ```
 cd harbor
 rm ../harbor-online-installer*
@@ -151,7 +151,7 @@ trivy:
   skip_update: true
 .
 .
-. 
+.
 ```
 > [!IMPORTANT]
 Notice how we're using the IP address of the Docker Host here.
