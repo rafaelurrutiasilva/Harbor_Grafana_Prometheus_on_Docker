@@ -156,13 +156,6 @@ When `install.sh` is executed, it utilizes the values from the harbor.yml file. 
 ```
 ./install.sh
 ```
-### Harbor Container Network
-> [!important]
-The docker-compose for Habor create the ***harbor_harbor*** docker network. Is import that Harbor starts first and all the rest of the containers are also started in the samme network. This network facilitates seamless communication between containers and assigns domain names, streamlining the entire setup process.
-```
-docker network ls
-docker network inspect harbor_harbor
-```
 ### Starting and Test the Harbor Container
 Start:
 ```
@@ -174,6 +167,15 @@ echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}'
 echo  http://$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')
 ```
 And chage therw harbor_admin_password: Harbor12345 to VMwareVM1! for example.
+
+### Harbor Container Network
+> [!important]
+Docker Compose for Harbor establishes the harbor_harbor network. Start Harbor first. This network facilitates seamless communication between containers and assigns domain names, streamlining the entire setup process.
+```
+docker network ls
+docker network inspect harbor_harbor
+```
+These commands can be utilized to verify the existence of the network and inspect its relationships
 
 ### Stoping the Harbor Container
 ```
