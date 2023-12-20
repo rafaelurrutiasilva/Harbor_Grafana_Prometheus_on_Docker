@@ -6,8 +6,6 @@ Utilizing a Container Host can be the easiest way to test and learn new ideas an
 <img width="600" alt="Overview" src="https://github.com/rafaelurrutiasilva/images/blob/main/system_overview/docker_labb01-System%20Overview.svg" align=center><br>
 *Figure 01 provides an overview of the data flow for collecting metrics.*
 
-
-
 ---
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -121,7 +119,6 @@ Port | Notes
 80   | Harbor Portal
 3000 | Grafana Server
 9323 | Docker Daemon Metrics
-
 
 ## Making your Photon OS VM a Container Host
 Photon OS provides a secure run-time environment for efficiently running containers. More information at [Frequently Asked Questions](https://github.com/vmware/photon/wiki/Frequently-Asked-Questions#photon-os-frequently-asked-questions)
