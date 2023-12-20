@@ -146,6 +146,9 @@ trivy:
 .
 . 
 ```
+> [!IMPORTANT]
+Notice how we're using the IP address of the Docker Host here.
+
 Checking the IP number of the host.
 ```
 hostname: "$(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
