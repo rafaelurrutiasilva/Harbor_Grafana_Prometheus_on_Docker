@@ -6,32 +6,48 @@ Utilizing a Container Host can be the easiest way to test and learn new ideas an
 <img width="600" alt="Overview" src="https://github.com/rafaelurrutiasilva/images/blob/main/system_overview/docker_labb01-System%20Overview.svg" align=center><br>
 *Figure 01 provides an overview of the data flow for collecting metrics.*
 
-
-
 ---
 ## Table of Contents
-1. [Introduction](README.md#introduction)
-2. [Goals and Objectives](README.md#goals-and-objectives)
-3. [Method](README.md#method)
-4. [Target Audience](README.md#target-audience)
-5. [Document Status](README.md#document-status)
-6. [Disclaimer](README.md#disclaimer)
-7. [Scope and Limitations](README.md#scope-and-limitations)
-8. [Environment](README.md#environment)
-9. [Acknowledgments](README.md#acknowledgments)
-10. [References](README.md#references)
-11. [Conclusion](README.md#conclusion)
-12. [Used Ports](README.md#used-ports)
-13. [Referenses](README.md#referenses)
-14. [Making your Photon OS VM a Container Host](README.md#making-your-photon-os-vm-a-container-host)
-15. [Harbor on Docker](README.md#harbor-on-docker)
-16. [Harbor Container Network](README.md#harbor-container-network)
-17. [Prometheus on Docker](README.md#prometheus-on-docker)
-18. [Prometheus Node Exporter on Docker](README.md#prometheus-node-exporter-on-docker)
-19. [Configure the Docker daemon as a Prometheus target](README.md#configure-the-docker-daemon-as-a-prometheus-target)
-20. [Grafana on Docker](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#grafana-on-docker)
-21. [Starting or Stopping all together](README.md#starting-or-stopping-all-together)
-22. [Extra](README.md#extra)
+1. [Introduction](#introduction)
+2. [Goals and Objectives](#goals-and-objectives)
+3. [Method](#method)
+4. [Target Audience](#target-audience)
+5. [Document Status](#document-status)
+6. [Disclaimer](#disclaimer)
+7. [Scope and Limitations](#scope-and-limitations)
+8. [Environment](#environment)
+9. [Acknowledgments](#acknowledgments)
+10. [Referenses](#referenses)
+11. [Conclusion](#conclusion)
+12. [Used Ports](#used-ports)
+13. [Making your Photon OS VM a Container Host](#making-your-photon-os-vm-a-container-host)
+14. [Harbor on Docker](#harbor-on-docker)
+    1. [Get the Installer](#get-the-installer)
+    2. [Configure the installer](#configure-the-installer)
+    3. [Run the installer](#run-the-installer)
+    4. [Starting and Test the Harbor Container](#starting-and-test-the-harbor-container)
+    5. [Harbor Container Network](#harbor-container-network)
+    6. [Stoping the Harbor Container](#stoping-the-harbor-container)
+15. [Prometheus on Docker](#prometheus-on-docker)
+    1. [Basic Configuration](#basic-configuration)
+    2. [Starting Prometius Container](#starting-prometius-container)
+    3. [Test and surf to the address below](#test-and-surf-to-the-address-below)
+    4. [Stoping Prometius Container](#stoping-prometius-container)
+16. [Prometheus Node Exporter on Docker](#prometheus-node-exporter-on-docker)
+    1. [Starting Node Exporter Container](#starting-node-exporter-container)
+    2. [Testing the metrics are exported](#testing-the-metrics-are-exported)
+    3. [Stoping Node Exporter Container](#stoping-node-exporter-container)
+17. [Configure the Docker daemon as a Prometheus target](#configure-the-docker-daemon-as-a-prometheus-target)
+18. [Grafana on Docker](#grafana-on-docker)
+    1. [Basic Configuration](#basic-configuration-1)
+    2. [Starting Grafana Container](#starting-grafana-container)
+    3. [Test and surf to the address below](#test-and-surf-to-the-address-below-1)
+    4. [Stoping Grafana Container](#stoping-grafana-container)
+19. [Starting or Stopping all together](#starting-or-stopping-all-together)
+    1. [Starting](#starting)
+    2. [Stopping](#stopping)
+    3. [Scripts](#scripts)
+20. [Extra](#extra)
 
 ## Introduction
 This repository includes instructions to guide you through the installation and execution of Harbor, Grafana, Prometheus, and Prometheus Node Exporter on a single [Photon OS](https://vmware.github.io/photon/#features) Docker Host. By following these instructions, you will gain insights into pulling and running container images on the same Container Host. Subsequently, you will be able to monitor machine and application metrics, including those of Harbor, using all the concurrently running containers.
@@ -39,7 +55,7 @@ This repository includes instructions to guide you through the installation and 
 ## Goals and Objectives
 Establish a baseline for a Docker Container Host based on Photon OS. Utilize the Container Host to run all applications within containers. Configure Harbor, Docker Host, and Virtual Machine to independently expose their metrics. Set up Prometheus and the Node Exporter to scrape the metrics and, finally, visualize them using Grafana with appropriate dashboards.
 
-## Method 
+## Method
 I began by identifying appropriate container images for the components I intended to work with. Subsequently, I initiated the process of launching these containers. As Harbor establishes its own Docker network, my initial objective was to consolidate all components within the same network, the *harbor_harbor* network. After confirming successful container startup and the scraping of metric, I opted to establish a distinct network for Prometheus components, the *prometheus_net*. Consequently, I integrated Prometheus into both the Harbor and and its dedicated network.
 <br>
 
@@ -57,7 +73,7 @@ My work here is mostly completed at the moment. There might be some updates if I
 > This is intended for learning, testing, and experimentation. The emphasis is not on security or creating an operational environment suitable for production.
 
 ## Scope and Limitations
-A quick method to set up an environment for installing and testing Harbor, Grafana, Prometheus, and Node Exporter on a single Container Host, all with the aim of learning more about observability.<br> 
+A quick method to set up an environment for installing and testing Harbor, Grafana, Prometheus, and Node Exporter on a single Container Host, all with the aim of learning more about observability.<br>
 This is not intended for use as a reference for a production environment and does not focus on all the security considerations such an environment requires.
 
 ## Environment
@@ -101,17 +117,16 @@ Port | Notes
 9100 | Prometheus Node Exporter
 9200 | Harbor Metrics
 80   | Harbor Portal
-3000 | Grafana Server 
+3000 | Grafana Server
 9323 | Docker Daemon Metrics
-
 
 ## Making your Photon OS VM a Container Host
 Photon OS provides a secure run-time environment for efficiently running containers. More information at [Frequently Asked Questions](https://github.com/vmware/photon/wiki/Frequently-Asked-Questions#photon-os-frequently-asked-questions)
 ```
 hostnamectl hostname chost    # Setting the hostname to chost
-tdnf update -y 
-tdnf install tar jq docker-compose git  
-systemctl start docker 
+tdnf update -y
+tdnf install tar jq docker-compose git
+systemctl start docker
 systemctl enable docker
 ```
 
@@ -124,22 +139,22 @@ mkdir -p /opt/harbor
 ```
 ### Configure the installer
 > [!IMPORTANT]
-Before you run the installer script, `install.sh`, you need to create your **harbor.yml** from the template. Will need to handle the *hostname*, *HTTS configuration*, the *Data volume*, the *skip_update* to avoid GitHub rate limiting issues as well uncomment the configuration for the *metric*. 
+Before you run the installer script, `install.sh`, you need to create your **harbor.yml** from the template. Will need to handle the *hostname*, *HTTS configuration*, the *Data volume*, the *skip_update* to avoid GitHub rate limiting issues as well uncomment the configuration for the *metric*.
 ```
 cd harbor
 rm ../harbor-online-installer*
 mv harbor.yml.tmpl harbor.yml
 ```
-I my ** harbor.yml** I'm using `data_volume: /opt/harbor`, my IP nr as hostname, no SSL (HTTPS part is commented out) and metric configuration as below.
+In my **harbor.yml** I'm using `data_volume: /opt/harbor`, my IP nr as hostname, no SSL (HTTPS part is commented out) and metric configuration as below.
 ```
 hostname: 192.168.157.131
 .
 .
 .
 metric:
-   enabled: true
-   port: 9200
-   path: /metrics
+  enabled: true
+  port: 9200
+  path: /metrics
 .
 .
 .
@@ -151,7 +166,7 @@ trivy:
   skip_update: true
 .
 .
-. 
+.
 ```
 > [!IMPORTANT]
 Notice how we're using the IP address of the Docker Host here.
