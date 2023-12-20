@@ -21,7 +21,8 @@ rule_files:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  # All Prometheus components are in the same network 'prometheus_net'
+
+# All Prometheus components are in the same network 'prometheus_net'
   - job_name: "prometheus"
     static_configs:
       - targets: ["prometheus:9090"]
@@ -30,7 +31,8 @@ scrape_configs:
     static_configs:
       - targets: ["node-exporter:9100"]
 
-  # All Harbor components are in the same network 'harbor_harbor'
+# ---  Harbor ----
+# All Harbor components are in the same network 'harbor_harbor'
   - job_name: "harbor-exporter"
     tls_config:
       insecure_skip_verify: true
