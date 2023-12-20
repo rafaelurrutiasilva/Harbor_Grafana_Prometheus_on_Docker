@@ -137,9 +137,9 @@ hostname: 192.168.157.131
 .
 .
 metric:
-   enabled: true
-   port: 9200
-   path: /metrics
+  enabled: true
+  port: 9200
+  path: /metrics
 .
 .
 .
