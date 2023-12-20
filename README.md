@@ -275,11 +275,11 @@ docker stop grafana; docker rm grafana
 The best approach for starting and stopping all containers is by utilizing the Docker Compose files. The Harbor installation generates one, and for the Prometheus components, you can use my [prometheus_compose.yml_2](compose/prometheus_compose.yml_2). All of these operations can be executed using:
 ### Starting
 ```
-for FILE in ~/harbor/docker-compose.yml ~/prometheus/docker-compose.yml; do docker-compose -f $FILE up -d
+for FILE in ~/harbor/docker-compose.yml ~/prometheus/docker-compose.yml; do docker-compose -f $FILE up -d;done
 ```
 ### Stopping
 ```
-for FILE in ~/harbor/docker-compose.yml ~/prometheus/docker-compose.yml; do docker-compose -f $FILE down
+for FILE in ~/harbor/docker-compose.yml ~/prometheus/docker-compose.yml; do docker-compose -f $FILE down;done
 ```
 ### Scripts
 You can also take a look at my start and stop scripts located under my directory [script](script).
