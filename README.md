@@ -130,7 +130,7 @@ cd harbor
 rm ../harbor-online-installer*
 mv harbor.yml.tmpl harbor.yml
 ```
-I my ** harbor.yml** I'm using `data_volume: /opt/harbor`, my IP nr as hostname, no SSL (HTTPS part is commented out) and metric configuration as below.
+In my **harbor.yml** I'm using `data_volume: /opt/harbor`, my IP nr as hostname, no SSL (HTTPS part is commented out) and metric configuration as below.
 ```
 hostname: 192.168.157.131
 .
