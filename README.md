@@ -85,7 +85,7 @@ VMware Workstation 17 Pro: Version 17.5.0 build-22583795
 VMware Photon OS: Version 5.0
 Docker Client Engine - Community: Version 24.0.5, API version: 1.43, Go version: go1.20.10
 Docker Server Engine - Community: Version 24.0.5, API version: 1.43, Go version: go1.20.10
-Virtual Machine: 2vCPU, 8GB vRAM, 50 GB vDiskx
+Virtual Machine: 2vCPU, 8GB vRAM, 50 GB vDisk
 ```
 
 ## Acknowledgments
