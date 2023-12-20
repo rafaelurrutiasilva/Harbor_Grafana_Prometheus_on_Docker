@@ -3,7 +3,7 @@
 Utilizing a Container Host can be the easiest way to test and learn new ideas and concepts in the computer world. In this particular case, I was seeking a method to initiate testing and learning more about observability, visualization, and exploration of all metrics I could scrape.
 <br>
 <br>
-
+ 
 ---
 ## Table of Contents
 1. [Introduction](https://github.com/rafaelurrutiasilva/Harbor_Grafana_Prometheus_on_Docker/tree/main#introduction)
