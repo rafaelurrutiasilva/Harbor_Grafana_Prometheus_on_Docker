@@ -3,8 +3,10 @@
 Utilizing a Container Host can be the easiest way to test and learn new ideas and concepts in the computer world. In this particular case, I was seeking a method to initiate testing and learning more about observability, visualization, and exploration of all metrics I could scrape.
 <br>
 <br>
-<img width="600" alt="Overview" src="(https://github.com/rafaelurrutiasilva/images/blob/main/system_overview/docker_labb01-System%20Overview.svg)" align=center><br>
-<img width="600" alt="Overview" src="(https://github.com/rafaelurrutiasilva/images/blob/main/system_overview/docker_labb01-System%20Overview.svg)" align=center><br>
+<img width="600" alt="Overview" src="https://github.com/rafaelurrutiasilva/images/blob/main/system_overview/docker_labb01-System%20Overview.svg" align=center><br>
+*Figure 01 provides an overview of the data flow for collecting metrics.*
+
+
 
 ---
 ## Table of Contents
