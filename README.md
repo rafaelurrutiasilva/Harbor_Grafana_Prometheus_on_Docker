@@ -117,7 +117,7 @@ tar xzvf harbor-online-installer-v2.7.4.tgz
 mkdir -p /opt/harbor
 ```
 ### Configure the installer
-> [!important]
+> [!IMPORTANT]
 Before you run the installer script, `install.sh`, you need to create your **harbor.yml** from the template. Will need to handle the *hostname*, *HTTS configuration*, the *Data volume*, the *skip_update* to avoid GitHub rate limiting issues as well uncomment the configuration for the *metric*. 
 ```
 cd harbor
@@ -188,7 +188,10 @@ Create config and data directories.
 ```
 mkdir -p /opt/prometheus/etc /opt/prometheus/data
 ```
-Please copy the [prometheus.yml](/etc/prometheus.yml) file to the /opt/prometheus/etc directory. Within the [compese](/compose) directory, you will find two files that can be utilized for different scenarios.
+Please copy the [prometheus.yml](etc/prometheus.yml) file to the /opt/prometheus/etc directory. Within the [etc](/etc) directory, you will find two files that can be utilized for different scenarios.
+> [!TIP]
+In my final setup, I am using the [prometheus.yml_2](etc/prometheus.yml_2) with the [prometheus_compose.yml_2](compose/prometheus_compose.yml_2)."
+
 Continue then with the rest here.
 ```
 chown -R nobody:nobody /opt/prometheus
@@ -200,7 +203,7 @@ Run the command below to create the docker network *prometheus_net* and the star
 docker network create prometheus_net
 docker run -d -p 9090:9090 --name=prometheus -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus --add-host=host.docker.external:192.168.157.131 --network prometheus_net prom/prometheus
 ```
-> [!important]
+> [!IMPORTANT]
 Notice how we're using the IP address of the Docker Host here.
 
 ### Test and surf to the address below
@@ -240,7 +243,7 @@ In my case I needed to create the folder `/etc/docker/` and the also the file `/
 }
 ```
 Restart the Docker deamon `systemctl restart docker` and test if you can see any metrics `curl 192.168.157.131:9323/metrics`.
-> [!important]
+> [!IMPORTANT]
 Notice how we're using the IP address of the Docker Host here.
 
 ## Grafana on Docker
@@ -269,7 +272,7 @@ docker stop grafana; docker rm grafana
 ```
 
 ## Starting or Stopping all together
-The best approach for starting and stopping all containers is by utilizing the Docker Compose files. The Harbor installation generates one, and for the Prometheus components, you can use my [prometheus_compose.yml](compose/prometheus_compose.yml). All of these operations can be executed using:
+The best approach for starting and stopping all containers is by utilizing the Docker Compose files. The Harbor installation generates one, and for the Prometheus components, you can use my [prometheus_compose.yml_2](compose/prometheus_compose.yml_2). All of these operations can be executed using:
 ### Starting
 ```
 for FILE in ~/harbor/docker-compose.yml ~/prometheus/docker-compose.yml; do docker-compose -f $FILE up -d
