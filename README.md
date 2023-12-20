@@ -198,8 +198,11 @@ chmod -R 755 /opt/prometheus
 Run the command below to create the docker network *prometheus_net* and the start the container.
 ```
 docker network create prometheus_net
-docker run -d -p 9090:9090 --name=prometheus  -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus  --network prometheus_net prom/prometheus
+docker run -d -p 9090:9090 --name=prometheus -v /opt/prometheus/etc:/etc/prometheus -v /opt/prometheus/data:/prometheus --add-host=host.docker.external:192.168.157.131 --network prometheus_net prom/prometheus
 ```
+> [!important]
+Notice how we're using the IP address of the Docker Host here.
+
 ### Test and surf to the address below
 ```
 echo "The Node IP address is $(ip address |grep inet |grep eth0 |awk '{print$2}' |sed 's,/24,,g')"
@@ -232,11 +235,13 @@ To configure the Docker daemon as a Prometheus target, you need to specify the m
 In my case I needed to create the folder `/etc/docker/` and the also the file `/etc/docker/daemon.json`.
 ```
 {
-  "metrics-addr": "127.0.0.1:9323",
-   "experimental" : true
+  "experimental" : true,
+  "metrics-addr" : "192.168.157.131:9323"
 }
 ```
-Restart the Docker deamon `systemctl restart docker` and test if you can see any metrics `curl localhost:9323/metrics`.
+Restart the Docker deamon `systemctl restart docker` and test if you can see any metrics `curl 192.168.157.131:9323/metrics`.
+> [!important]
+Notice how we're using the IP address of the Docker Host here.
 
 ## Grafana on Docker
 ### Basic Configuration
