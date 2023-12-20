@@ -50,8 +50,7 @@ I began by identifying appropriate container images for the components I intende
 Designed for anyone looking to navigate and gain insights into testing and learning these matters, but perhaps primarily for those, like me, who have just embarked on their journey and need a helping hand.
 
 ## Document Status
-> [!NOTE]  
-> My work here is not finished yet. I need, among other things, to supplement with instructions on how each component should be configured to work together as well supplement with an overview image that explains how the whole thing works.
+My work here is mostly completed at the moment. There might be some updates if I deem them necessary.
 
 ## Disclaimer
 > [!CAUTION]
