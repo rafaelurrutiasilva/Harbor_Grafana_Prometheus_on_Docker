@@ -85,8 +85,7 @@ Big thanks to all the people involved in the material I refer to in my links! I 
 * [Harbor Scrapping Metrics](https://goharbor.io/docs/2.2.0/administration/metrics/#scrapping-metrics-with-prometheus)
 
 ## Conclusion
-> [!NOTE]
-> No there jet!
+Creating this tutorial has provided me with valuable practical insights. The Docker Network, a complex aspect of this lab, should be set up efficiently to prioritize diving into more central topics, such as metrics and observability. I hope my guide assists you in navigating through all the steps, allowing you to concentrate on your experiments with Prometheus, metrics, and visualization using Grafana.
 
 ## Used Ports
 Port | Notes
