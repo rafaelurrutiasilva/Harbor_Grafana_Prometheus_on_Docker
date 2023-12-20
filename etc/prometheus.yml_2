@@ -1,0 +1,66 @@
+# my global config
+global:
+  scrape_interval: 15s                                  # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s                              # Evaluate rules every 15 seconds. The default is every 1 minute.
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# All the 'targets' are started in the same docker network. They also use the docker name as the hostname
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+
+# All Prometheus components are in the same network 'prometheus_net'
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["prometheus:9090"]
+
+  - job_name: "node_exporter"
+    static_configs:
+      - targets: ["node-exporter:9100"]
+
+# ---  Docker Engine ----
+# The host.docker.external has to be added using '--add-host=host.docker.external:ip_nr_of_the_host" and actual IP nr of the Container Host.
+  - job_name: "docker"
+    static_configs:
+      - targets: ["host.docker.external:9323"]
+
+# ---  Harbor ----
+# All Harbor components are in the same network 'harbor_harbor'
+  - job_name: "harbor-exporter"
+    tls_config:
+      insecure_skip_verify: true
+    scrape_interval: 20s
+    params:
+      comp: ['exporter']
+    # Scrape metrics from the Harbor exporter component
+    static_configs:
+      - targets: ["harbor-exporter:8080"]
+
+  - job_name: "harbor-core"
+    scrape_interval: 20s
+    params:
+      # Scrape metrics from the Harbor core component
+      comp: ['core']
+    static_configs:
+      - targets: ["harbor-core:9200"]
+
+  - job_name: "harbor-jobservice"
+    scrape_interval: 20s
+    params:
+      # Scrape metrics from the Harbor jobservice component
+      comp: ['jobservice']
+    static_configs:
+      - targets: ["harbor-jobservice:9200"]
