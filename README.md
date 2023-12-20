@@ -42,7 +42,8 @@ Establish a baseline for a Docker Container Host based on Photon OS. Utilize the
 ## Method 
 I began by identifying appropriate container images for the components I intended to work with. Subsequently, I initiated the process of launching these containers. As Harbor establishes its own Docker network, my initial objective was to consolidate all components within the same network, the *harbor_harbor* network. After confirming successful container startup and the scraping of metric, I opted to establish a distinct network for Prometheus components, the *prometheus_net*. Consequently, I integrated Prometheus into both the Harbor and and its dedicated network.
 <br>
-<img width="600" alt="Docker Networks" src="https://github.com/rafaelurrutiasilva/images/blob/main/system_overview/docker_labb01-Using%20Habor%20and%20Prometheus%20Docker%20Network.svg" align=center><br>
+
+<img width="600" alt="DockerNetworks" src="https://github.com/rafaelurrutiasilva/images/blob/main/system_overview/docker_labb01-Using%20Habor%20and%20Prometheus%20Docker%20Network.svg" align=center><br>
 *Figure 02 provides an overview of how Docker networks are utilized.*
 
 ## Target Audience
